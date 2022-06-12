@@ -146,6 +146,12 @@ Module NEWPOSMODULE
                 Dim criticalmessage = ListOfIngredients.Substring(0, ListOfIngredients.Length - 2)
                 Dim outofstock = MessageBox.Show("Item (" & criticalmessage & ") is out of stock, do you wish to continue?", "Out of Stock", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 If outofstock = DialogResult.Yes Then
+                    If DiscAppleid Or PromoApplied Then
+                        DiscAppleid = False
+                        PromoApplied = False
+                        POS.DiscountDefault()
+                        POS.PromoDefault()
+                    End If
                     AddProductToDatagridviewOrders(ProductName, ProductOriginalPrice, ID, SKU, CAT, ORIGIN, INVID, addontype, halfbatch)
                     AddInventoryToDatagridviewInv(formula_id, CAT, ORIGIN, addontype, ProductName, halfbatch)
                 Else

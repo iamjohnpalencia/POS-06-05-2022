@@ -1112,8 +1112,8 @@ Module publicfunctions
                         End If
                         If Dt(i)(24) > 0 Then
                             RECEIPTLINECOUNT += 10
-                            RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & Dt(i)(24) & "ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
-                            FillEJournalContent("    + " & Dt(i)(24) & "ATHLETE DISCOUNT", {}, "S", False, True)
+                            RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & Dt(i)(24) & " ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
+                            FillEJournalContent("    + " & Dt(i)(24) & " ATHLETE DISCOUNT", {}, "S", False, True)
                         End If
                         If Dt(i)(26) > 0 Then
                             RECEIPTLINECOUNT += 10
@@ -1274,8 +1274,8 @@ Module publicfunctions
                             End If
                             If Dt(i)(24) > 0 Then
                                 RECEIPTLINECOUNT += 10
-                                RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & Dt(i)(24) & "ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
-                                FillEJournalContent("    + " & Dt(i)(24) & "ATHLETE DISCOUNT", {}, "S", False, True)
+                                RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & Dt(i)(24) & " ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
+                                FillEJournalContent("    + " & Dt(i)(24) & " ATHLETE DISCOUNT", {}, "S", False, True)
                             End If
                             If Dt(i)(26) > 0 Then
                                 RECEIPTLINECOUNT += 10
@@ -1419,8 +1419,8 @@ Module publicfunctions
                                 End If
                                 If .DataGridViewOrders.Rows(i).Cells(19).Value > 0 Then
                                     RECEIPTLINECOUNT += 10
-                                    RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & .DataGridViewOrders.Rows(i).Cells(20).Value & "ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
-                                    FillEJournalContent("    + " & .DataGridViewOrders.Rows(i).Cells(20).Value & "ATHLETE DISCOUNT", {}, "S", False, True)
+                                    RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "    + " & .DataGridViewOrders.Rows(i).Cells(20).Value & " ATHLETE DISCOUNT", "", FontAddOn, 0, 40)
+                                    FillEJournalContent("    + " & .DataGridViewOrders.Rows(i).Cells(20).Value & " ATHLETE DISCOUNT", {}, "S", False, True)
                                 End If
                                 If .DataGridViewOrders.Rows(i).Cells(21).Value > 0 Then
                                     RECEIPTLINECOUNT += 10
