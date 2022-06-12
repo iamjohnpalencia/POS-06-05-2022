@@ -83,7 +83,6 @@ Public Class Reports
             '    ButtonZreadAdmin.Visible = False
 
             'End If
-
             If S_Zreading = Format(Now().AddDays(1), "yyyy-MM-dd") Then
                 'ButtonZread.Enabled = False
                 ButtonZReading.Enabled = False
@@ -151,6 +150,7 @@ Public Class Reports
                 ButtonZReading.Enabled = True
             End If
 
+            LabelDate.Text = "Z-READ DATE: " & Format(StringToDate(S_Zreading), "MMMM dd, yyyy").ToString.ToUpper
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
 
@@ -1157,7 +1157,7 @@ Public Class Reports
                     ElseIf .Rows(i).Cells(11).Value = "Lalafood" Then
                         Lalafood += .Rows(i).Cells(1).Value
                         Lalafoodqty += 1
-                    ElseIf .Rows(i).Cells(11).Value = "Complementary Expenses" Then
+                    ElseIf .Rows(i).Cells(11).Value = "Complimentary Expenses" Then
                         RepExpense += .Rows(i).Cells(1).Value
                         RepExpenseqty += 1
                     ElseIf .Rows(i).Cells(11).Value = "Food Panda" Then
@@ -1188,8 +1188,8 @@ Public Class Reports
                     RightToLeftDisplay(sender, e, 160, "Paymaya(" & Paymayaqty & ")", NUMBERFORMAT(Paymaya), font, 0, 0)
                 ElseIf .Text = "Lalafood" Then
                     RightToLeftDisplay(sender, e, 160, "Lalafood(" & Lalafoodqty & ")", NUMBERFORMAT(Lalafood), font, 0, 0)
-                ElseIf .Text = "Complementary Expenses" Then
-                    RightToLeftDisplay(sender, e, 160, "Complementary Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
+                ElseIf .Text = "Complimentary Expenses" Then
+                    RightToLeftDisplay(sender, e, 160, "Complimentary Expenses(" & RepExpenseqty & ")", NUMBERFORMAT(RepExpense), font, 0, 0)
                 ElseIf .Text = "Food Panda" Then
                     RightToLeftDisplay(sender, e, 160, "Food Panda(" & FoodPandaqty & ")", NUMBERFORMAT(FoodPanda), font, 0, 0)
                 ElseIf .Text = "Others" Then
@@ -2740,7 +2740,7 @@ Public Class Reports
                 t.Join()
             Next
 
-            ThreadZXRead = New Thread(Sub() ZXCashlessTotal = sum("amountdue", "loc_daily_transaction WHERE active IN (1,3) AND " & ZReadDateFilter & " AND transaction_type NOT IN ('Walk-in' , 'Complementary Expenses')"))
+            ThreadZXRead = New Thread(Sub() ZXCashlessTotal = sum("amountdue", "loc_daily_transaction WHERE active IN (1,3) AND " & ZReadDateFilter & " AND transaction_type NOT IN ('Walk-in' , 'Complimentary Expenses')"))
             ThreadZXRead.Start()
             ThreadlistZXRead.Add(ThreadZXRead)
             For Each t In ThreadlistZXRead
@@ -2782,7 +2782,7 @@ Public Class Reports
                 t.Join()
             Next
 
-            ThreadZXRead = New Thread(Sub() ZXRepExpense = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND " & ZReadDateFilter & " AND transaction_type = 'Complementary Expenses' "))
+            ThreadZXRead = New Thread(Sub() ZXRepExpense = sum("amountdue", "loc_daily_transaction WHERE active = 3 AND " & ZReadDateFilter & " AND transaction_type = 'Complimentary Expenses' "))
             ThreadZXRead.Start()
             ThreadlistZXRead.Add(ThreadZXRead)
             For Each t In ThreadlistZXRead
@@ -3320,15 +3320,11 @@ Public Class Reports
                 printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1020)
 
                 Dim XMLName As String = "ZREAD" & FullDateFormatForSaving().ToString & ".xml"
-
                 XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
                 XML_Writer.WriteStartDocument(True)
                 XML_Writer.Formatting = Formatting.Indented
                 XML_Writer.Indentation = 2
                 XML_Writer.WriteStartElement("Table")
-                XML_Writer.WriteEndElement()
-                XML_Writer.WriteEndDocument()
-                XML_Writer.Close()
 
                 If S_Print_XZRead = "YES" Then
                     printdocZRead.Print()
@@ -3360,6 +3356,8 @@ Public Class Reports
                 ConnectionLocal.Close()
                 'Insert to local zread inv
                 XZreadingInventory(S_Zreading)
+
+                LabelDate.Text = "Z-READ DATE: " & Format(StringToDate(S_Zreading), "MMMM dd, yyyy").ToString.ToUpper
 
                 If S_Zreading = Format(Now().AddDays(1), "yyyy-MM-dd") Then
                     'ButtonZread.Enabled = False

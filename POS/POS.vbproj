@@ -452,6 +452,12 @@
     <Compile Include="SUBFORMS\UserSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\ViewLogs.Designer.vb">
+      <DependentUpon>ViewLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ViewLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\WaitFrm.Designer.vb">
       <DependentUpon>WaitFrm.vb</DependentUpon>
     </Compile>
@@ -615,6 +621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\UserSettings.resx">
       <DependentUpon>UserSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ViewLogs.resx">
+      <DependentUpon>ViewLogs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\WaitFrm.resx">
       <DependentUpon>WaitFrm.vb</DependentUpon>

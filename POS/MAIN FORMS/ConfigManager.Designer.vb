@@ -188,6 +188,10 @@ Partial Class ConfigManager
         Me.Label63 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel13 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox23 = New System.Windows.Forms.GroupBox()
+        Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.RadioButtonPrintSRNo = New System.Windows.Forms.RadioButton()
+        Me.Label118 = New System.Windows.Forms.Label()
+        Me.RadioButtonPrintSRYes = New System.Windows.Forms.RadioButton()
         Me.Panel31 = New System.Windows.Forms.Panel()
         Me.RadioButtonPrintReturnsNo = New System.Windows.Forms.RadioButton()
         Me.RadioButtonPrintReturnsYes = New System.Windows.Forms.RadioButton()
@@ -397,10 +401,6 @@ Partial Class ConfigManager
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BackgroundWorkerValidateSerial = New System.ComponentModel.BackgroundWorker()
-        Me.Panel32 = New System.Windows.Forms.Panel()
-        Me.RadioButtonPrintSRNo = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonPrintSRYes = New System.Windows.Forms.RadioButton()
-        Me.Label118 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -441,6 +441,7 @@ Partial Class ConfigManager
         Me.GroupBox19.SuspendLayout()
         Me.TableLayoutPanel13.SuspendLayout()
         Me.GroupBox23.SuspendLayout()
+        Me.Panel32.SuspendLayout()
         Me.Panel31.SuspendLayout()
         Me.Panel30.SuspendLayout()
         Me.Panel28.SuspendLayout()
@@ -491,7 +492,6 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel12.SuspendLayout()
-        Me.Panel32.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -2381,6 +2381,51 @@ Partial Class ConfigManager
         Me.GroupBox23.TabStop = False
         Me.GroupBox23.Text = "Printing Receipt Options"
         '
+        'Panel32
+        '
+        Me.Panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel32.Controls.Add(Me.RadioButtonPrintSRNo)
+        Me.Panel32.Controls.Add(Me.Label118)
+        Me.Panel32.Controls.Add(Me.RadioButtonPrintSRYes)
+        Me.Panel32.Location = New System.Drawing.Point(6, 175)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(314, 39)
+        Me.Panel32.TabIndex = 290
+        '
+        'RadioButtonPrintSRNo
+        '
+        Me.RadioButtonPrintSRNo.AutoSize = True
+        Me.RadioButtonPrintSRNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintSRNo.Location = New System.Drawing.Point(260, 9)
+        Me.RadioButtonPrintSRNo.Name = "RadioButtonPrintSRNo"
+        Me.RadioButtonPrintSRNo.Size = New System.Drawing.Size(40, 18)
+        Me.RadioButtonPrintSRNo.TabIndex = 290
+        Me.RadioButtonPrintSRNo.TabStop = True
+        Me.RadioButtonPrintSRNo.Text = "No"
+        Me.RadioButtonPrintSRNo.UseVisualStyleBackColor = True
+        '
+        'Label118
+        '
+        Me.Label118.AutoSize = True
+        Me.Label118.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label118.Location = New System.Drawing.Point(15, 9)
+        Me.Label118.Name = "Label118"
+        Me.Label118.Size = New System.Drawing.Size(152, 14)
+        Me.Label118.TabIndex = 288
+        Me.Label118.Text = "Directly Print Sales Report:"
+        '
+        'RadioButtonPrintSRYes
+        '
+        Me.RadioButtonPrintSRYes.AutoSize = True
+        Me.RadioButtonPrintSRYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.RadioButtonPrintSRYes.Location = New System.Drawing.Point(209, 9)
+        Me.RadioButtonPrintSRYes.Name = "RadioButtonPrintSRYes"
+        Me.RadioButtonPrintSRYes.Size = New System.Drawing.Size(45, 18)
+        Me.RadioButtonPrintSRYes.TabIndex = 289
+        Me.RadioButtonPrintSRYes.TabStop = True
+        Me.RadioButtonPrintSRYes.Text = "Yes"
+        Me.RadioButtonPrintSRYes.UseVisualStyleBackColor = True
+        '
         'Panel31
         '
         Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -4031,13 +4076,14 @@ Partial Class ConfigManager
         Me.GroupBox13.Size = New System.Drawing.Size(493, 330)
         Me.GroupBox13.TabIndex = 39
         Me.GroupBox13.TabStop = False
-        Me.GroupBox13.Text = "Logs"
         '
         'TextBox1
         '
+        Me.TextBox1.BackColor = System.Drawing.Color.Black
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Courier New", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.Color.White
         Me.TextBox1.Location = New System.Drawing.Point(3, 23)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
@@ -4295,51 +4341,6 @@ Partial Class ConfigManager
         'BackgroundWorkerValidateSerial
         '
         '
-        'Panel32
-        '
-        Me.Panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel32.Controls.Add(Me.RadioButtonPrintSRNo)
-        Me.Panel32.Controls.Add(Me.Label118)
-        Me.Panel32.Controls.Add(Me.RadioButtonPrintSRYes)
-        Me.Panel32.Location = New System.Drawing.Point(6, 175)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(314, 39)
-        Me.Panel32.TabIndex = 290
-        '
-        'RadioButtonPrintSRNo
-        '
-        Me.RadioButtonPrintSRNo.AutoSize = True
-        Me.RadioButtonPrintSRNo.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.RadioButtonPrintSRNo.Location = New System.Drawing.Point(260, 9)
-        Me.RadioButtonPrintSRNo.Name = "RadioButtonPrintSRNo"
-        Me.RadioButtonPrintSRNo.Size = New System.Drawing.Size(40, 18)
-        Me.RadioButtonPrintSRNo.TabIndex = 290
-        Me.RadioButtonPrintSRNo.TabStop = True
-        Me.RadioButtonPrintSRNo.Text = "No"
-        Me.RadioButtonPrintSRNo.UseVisualStyleBackColor = True
-        '
-        'RadioButtonPrintSRYes
-        '
-        Me.RadioButtonPrintSRYes.AutoSize = True
-        Me.RadioButtonPrintSRYes.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.RadioButtonPrintSRYes.Location = New System.Drawing.Point(209, 9)
-        Me.RadioButtonPrintSRYes.Name = "RadioButtonPrintSRYes"
-        Me.RadioButtonPrintSRYes.Size = New System.Drawing.Size(45, 18)
-        Me.RadioButtonPrintSRYes.TabIndex = 289
-        Me.RadioButtonPrintSRYes.TabStop = True
-        Me.RadioButtonPrintSRYes.Text = "Yes"
-        Me.RadioButtonPrintSRYes.UseVisualStyleBackColor = True
-        '
-        'Label118
-        '
-        Me.Label118.AutoSize = True
-        Me.Label118.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label118.Location = New System.Drawing.Point(15, 9)
-        Me.Label118.Name = "Label118"
-        Me.Label118.Size = New System.Drawing.Size(152, 14)
-        Me.Label118.TabIndex = 288
-        Me.Label118.Text = "Directly Print Sales Report:"
-        '
         'ConfigManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4405,6 +4406,8 @@ Partial Class ConfigManager
         Me.GroupBox19.PerformLayout()
         Me.TableLayoutPanel13.ResumeLayout(False)
         Me.GroupBox23.ResumeLayout(False)
+        Me.Panel32.ResumeLayout(False)
+        Me.Panel32.PerformLayout()
         Me.Panel31.ResumeLayout(False)
         Me.Panel31.PerformLayout()
         Me.Panel30.ResumeLayout(False)
@@ -4469,8 +4472,6 @@ Partial Class ConfigManager
         CType(Me.DataGridViewOutletDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel12.ResumeLayout(False)
-        Me.Panel32.ResumeLayout(False)
-        Me.Panel32.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

@@ -1903,14 +1903,41 @@ Module publicfunctions
         End Try
         Return ToRound
     End Function
-    Public Sub Compute()
-        With POS
-            .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
-            .TextBoxSUBTOTAL.Text = .Label76.Text
-            Dim GRANDTOTAL As Double = Double.Parse(.Label76.Text) - Double.Parse(.TextBoxDISCOUNT.Text)
-            .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(GRANDTOTAL)
-            .TextBoxDISCOUNT.Text = NUMBERFORMAT(0)
-        End With
+    Public Sub Compute(Optional NotResetDiscount As Boolean = False, Optional TotalDiscount As Double = 0, Optional NotTriggerResetDisc As Boolean = False, Optional AutoCompute As Boolean = True)
+        Try
+            'MsgBox(TRANSACTIONMODE)
+            With POS
+
+                Select Case TotalDiscount
+                    Case > 0
+                        If Not NotTriggerResetDisc Then
+                            .DiscountDefault()
+                        End If
+                End Select
+
+                If PromoApplied Then
+                    If Not NotResetDiscount Or Not NotTriggerResetDisc Then
+                        If AutoCompute Then
+                            .TextBoxDISCOUNT.Text = "0.00"
+                            .PromoDefault()
+                        End If
+                    End If
+                End If
+                If AutoCompute Then
+                    .Label76.Text = SumOfColumnsToDecimal(.DataGridViewOrders, 3)
+                    .TextBoxSUBTOTAL.Text = .Label76.Text
+                    Dim GRANDTOTAL As Double = Double.Parse(.Label76.Text) - Double.Parse(.TextBoxDISCOUNT.Text)
+                    .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(GRANDTOTAL)
+                    Select Case NotResetDiscount And NotTriggerResetDisc
+                        Case False
+                            .TextBoxDISCOUNT.Text = NUMBERFORMAT(0)
+                    End Select
+                End If
+
+            End With
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Public Sub LedDisplay(TextToDisplay As String, TotalOrChange As Boolean)
@@ -2016,4 +2043,11 @@ Module publicfunctions
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+
+    Public Function StringToDate(StringToConvert) As Date
+        Dim iDate As String = StringToConvert
+        Dim oDate As DateTime = Convert.ToDateTime(iDate)
+        Dim FullDate As Date = oDate.Day & " " & oDate.Month & "  " & oDate.Year
+        Return FullDate
+    End Function
 End Module

@@ -49,7 +49,7 @@ Public Class Inventory
                 ButtonResetInventory.Visible = False
                 GroupBoxStockAdjustment.Visible = False
             End If
-
+            LabelDate.Text = "Starting inventory of [ " & Format(DateTimePickerZXreading.Value, "MMMM dd, yyyy") & " ]"
         Catch ex As Exception
             SendErrorReport(ex.ToString)
         End Try
@@ -392,13 +392,8 @@ Public Class Inventory
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        LabelDate.Text = "Starting inventory of [ " & Format(DateTimePickerZXreading.Value, "MMMM dd, yyyy") & " ]"
         FillDatagridZreadInv(True)
     End Sub
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked Then
-            DateTimePickerZXreadingTo.Enabled = False
-        Else
-            DateTimePickerZXreadingTo.Enabled = True
-        End If
-    End Sub
+
 End Class

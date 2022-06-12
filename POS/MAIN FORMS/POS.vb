@@ -799,7 +799,7 @@ Public Class POS
         End Try
     End Sub
 
-    Private Sub PromoDefault()
+    Public Sub PromoDefault()
         Try
 
             If SeniorGCDiscount Then
@@ -808,7 +808,9 @@ Public Class POS
                 SeniorGCDiscount = False
             Else
                 If Not DiscAppleid Then
-                    Compute()
+                    If Not PromoApplied Then
+                        Compute()
+                    End If
                 End If
             End If
 
@@ -825,7 +827,7 @@ Public Class POS
         End Try
     End Sub
 
-    Private Sub DiscountDefault()
+    Public Sub DiscountDefault()
         Try
             If S_ZeroRated = "0" Then
                 Dim PRTAX As Double = 1 + Val(S_Tax)
@@ -869,8 +871,9 @@ Public Class POS
             Next
 
             TextBoxDISCOUNT.Text = NUMBERFORMAT(Val(TextBoxDISCOUNT.Text) - GetDicountValue)
+            'MsgBox(PromoApplied)
+            Compute(True, GetDicountValue, True)
 
-            Compute()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -1113,7 +1116,6 @@ Public Class POS
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonApplyDiscounts.Click
         Try
 
-            SeniorGCDiscount = False
 
             TOTALDISCOUNT = 0
             GROSSSALE = 0
@@ -1125,7 +1127,7 @@ Public Class POS
             VAT12PERCENT = 0
             ZERORATEDSALES = 0
             ZERORATEDNETSALES = 0
-            PromoApplied = False
+
             SeniorDetailsID = ""
             SeniorDetailsName = ""
             SeniorPhoneNumber = ""
@@ -1513,7 +1515,7 @@ Public Class POS
 
             INSERTTHISDATE = S_Zreading & " " & Format(Now(), "HH:mm:ss")
             SUPERAMOUNTDUE = Convert.ToDecimal(Double.Parse(TextBoxGRANDTOTAL.Text))
-            If TRANSACTIONMODE = "Complementary Expenses" Then
+            If TRANSACTIONMODE = "Complimentary Expenses" Then
                 ACTIVE = 3
             End If
             GROSSSALE = NUMBERFORMAT(Double.Parse(Label76.Text))
@@ -2230,6 +2232,8 @@ Public Class POS
         End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonRemoveDiscount.Click
+        ''MsgBox(TRANSACTIONMODE)
+        'MsgBox(PromoApplied)
         DiscountDefault()
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonRemovePromo.Click

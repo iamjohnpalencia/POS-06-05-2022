@@ -7,6 +7,7 @@
         TopMost = True
         TextBoxMONEY.Text = "0.00"
         TextBoxCHANGE.Text = "0.00"
+        'MsgBox(SeniorGCDiscount)
         If SeniorGCDiscount Then
             TextBoxDiscType.Text = "Disc + GC"
         Else

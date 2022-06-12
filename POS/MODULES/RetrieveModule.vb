@@ -859,6 +859,7 @@ Module RetrieveModule
         Try
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim Sql = "SELECT " & toreturn & " FROM " & table & " "
+            Console.WriteLine(Sql)
             Dim Cmd As MySqlCommand = New MySqlCommand(Sql, ConnectionLocal)
             Using reader As MySqlDataReader = Cmd.ExecuteReader
                 If reader.HasRows Then

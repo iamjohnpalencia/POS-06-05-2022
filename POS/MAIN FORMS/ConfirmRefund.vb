@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing.Printing
+Imports System.Text
+Imports System.Xml
 Imports MySql.Data.MySqlClient
 
 Public Class ConfirmRefund
@@ -92,6 +94,9 @@ Public Class ConfirmRefund
             CountHeaderLine *= 10
             CountFooterLine *= 10
 
+
+
+
             For i As Integer = 0 To Dt.Rows.Count - 1 Step +1
                 ProductLine += 10
                 If Dt(i)(17) > 0 Then
@@ -102,12 +107,25 @@ Public Class ConfirmRefund
             TotalLines = CountHeaderLine + ProductLine + CountFooterLine + BodyLine
             printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), TotalLines)
 
+            Dim XMLName As String = "R" & TRANSACTIONNUMBER & FullDateFormatForSaving().ToString & ".xml"
+            XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
+            XML_Writer.WriteStartDocument(True)
+            XML_Writer.Formatting = Formatting.Indented
+            XML_Writer.Indentation = 2
+            XML_Writer.WriteStartElement("Table")
+
             If S_Print_Returns = "YES" Then
                 printdoc.Print()
             Else
                 PrintPreviewDialog.Document = printdoc
                 PrintPreviewDialog.ShowDialog()
             End If
+
+            XML_Writer.WriteEndElement()
+            XML_Writer.WriteEndDocument()
+            XML_Writer.Close()
+            SaveXMLInfo(XMLName)
+
             AuditTrail.LogToAuditTral("Transaction", "POS/Transaction Refund: " & TRANSACTIONNUMBER, "Normal")
             Dim UserCodeID = returnselect("user_id", "loc_users WHERE user_code = '" & Trim(TextBox1.Text) & "'")
             SettingsForm.INSERTRETURNS(TRANSACTIONNUMBER)

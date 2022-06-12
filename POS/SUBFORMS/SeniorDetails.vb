@@ -169,7 +169,12 @@ Public Class SeniorDetails
             End With
 
             TransactionVariables.DiscountName = COUPONNAME
-            DiscountType = COUPONNAME
+            If PromoApplied Then
+                SeniorGCDiscount = True
+            Else
+                DiscountType = COUPONNAME
+            End If
+
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Senior Details: " & ex.ToString, "Critical")
 

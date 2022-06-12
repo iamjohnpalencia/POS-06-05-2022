@@ -67,21 +67,21 @@ Public Class CouponCode
                     If .DataGridViewOrders.Rows(i).Cells(11).Value > 0 Then
                         Dim priceadd = .DataGridViewOrders.Rows(i).Cells(11).Value * S_Upgrade_Price
                         If S_ZeroRated = "0" Then
-                            .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd
+                            .DataGridViewOrders.Rows(i).Cells(3).Value = NUMBERFORMAT(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd)
                         Else
                             Dim TotalPrice As Double = 0
                             Dim Tax = 1 + Val(S_ZeroRated_Tax)
                             Dim Total = Math.Round(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value + priceadd / Tax, 2, MidpointRounding.AwayFromZero)
-                            .DataGridViewOrders.Rows(i).Cells(3).Value = Total
+                            .DataGridViewOrders.Rows(i).Cells(3).Value = NUMBERFORMAT(Total)
                         End If
                     Else
                         If S_ZeroRated = "0" Then
-                            .DataGridViewOrders.Rows(i).Cells(3).Value = .DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value
+                            .DataGridViewOrders.Rows(i).Cells(3).Value = NUMBERFORMAT(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value)
                         Else
                             Dim TotalPrice As Double = 0
                             Dim Tax = 1 + Val(S_ZeroRated_Tax)
                             Dim Total = Math.Round(.DataGridViewOrders.Rows(i).Cells(1).Value * .DataGridViewOrders.Rows(i).Cells(2).Value / Tax, 2, MidpointRounding.AwayFromZero)
-                            .DataGridViewOrders.Rows(i).Cells(3).Value = Total
+                            .DataGridViewOrders.Rows(i).Cells(3).Value = NUMBERFORMAT(Total)
                         End If
                     End If
                 Next
@@ -159,17 +159,17 @@ Public Class CouponCode
                     Dim PRVAT12PERCENT As Double = Format(PRVATABLESALES * PRTAX, "0.00")
 
                     '.GROSSSALE = GROSSSALES
-                    TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                     VATEXEMPTSALES = 0
                     LESSVAT = 0
-                    TOTALDISCOUNT = PRTOTALDISCOUNT
-                    VATABLESALES = PRVATABLESALES
-                    VAT12PERCENT = PRVAT12PERCENT
-                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                    TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                    VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                    VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoDesc = ""
-                    PromoTotal = PRTOTALDISCOUNT
+                    PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoApplied = True
                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
 
@@ -190,22 +190,22 @@ Public Class CouponCode
                     'Dim VAT12PERCENT As Double = Format(VATABLESALES * S_Tax, "0.00")
 
                     '.GROSSSALE = GROSSSALES
-                    TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                     VATEXEMPTSALES = 0
                     LESSVAT = 0
-                    TOTALDISCOUNT = PRTOTALDISCOUNT
-                    VATABLESALES = .Label76.Text
+                    TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                    VATABLESALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
                     VAT12PERCENT = 0
-                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
 
-                    ZERORATEDSALES = .Label76.Text
-                    ZERORATEDNETSALES = .Label76.Text - PRTOTALDISCOUNT
-                    .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(.Label76.Text - PRTOTALDISCOUNT)
+                    ZERORATEDSALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
+                    ZERORATEDNETSALES = NUMBERFORMAT(Double.Parse(.Label76.Text) - PRTOTALDISCOUNT)
+                    .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(Double.Parse(.Label76.Text) - PRTOTALDISCOUNT)
 
                     PromoDesc = ""
-                    PromoTotal = PRTOTALDISCOUNT
+                    PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoApplied = True
                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")
@@ -251,44 +251,44 @@ Public Class CouponCode
                             PRVAT12PERCENT = Format(PRVATABLESALES * S_Tax, "0.00")
                         End If
                         '.GROSSSALE = GROSSSALES
-                        TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                        TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                         VATEXEMPTSALES = 0
                         LESSVAT = 0
-                        TOTALDISCOUNT = PRTOTALDISCOUNT
-                        VATABLESALES = PRVATABLESALES
-                        VAT12PERCENT = PRVAT12PERCENT
-                        TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                        TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                        VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                        VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                        TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
                         If S_ZeroRated = "1" Then
-                            ZERORATEDSALES = PRVATABLESALES
-                            ZERORATEDNETSALES = PRTOTALAMOUNTDUE
+                            ZERORATEDSALES = NUMBERFORMAT(PRVATABLESALES)
+                            ZERORATEDNETSALES = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         End If
                         PromoDesc = ""
-                        PromoTotal = PRTOTALDISCOUNT
+                        PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                         PromoApplied = True
                         PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
 
                     Else
                         If S_ZeroRated = "1" Then
-                            PRTOTALAMOUNTDUE = PRGROSSSALES - PRTOTALDISCOUNT
-                            PRVATABLESALES = .Label76.Text
+                            PRTOTALAMOUNTDUE = NUMBERFORMAT(PRGROSSSALES - PRTOTALDISCOUNT)
+                            PRVATABLESALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
                             PRVAT12PERCENT = 0
                         Else
-                            PRTOTALAMOUNTDUE = PRGROSSSALES - PRTOTALDISCOUNT
+                            PRTOTALAMOUNTDUE = NUMBERFORMAT(PRGROSSSALES - PRTOTALDISCOUNT)
                             PRVATABLESALES = Format(PRGROSSSALES / PRTax, "0.00")
                             PRVAT12PERCENT = Format(PRVATABLESALES * S_Tax, "0.00")
                         End If
 
                         .TextBoxDISCOUNT.Text = Val(.TextBoxDISCOUNT.Text) + PRTOTALDISCOUNT
-                        TOTALDISCOUNT = TOTALDISCOUNT + PRTOTALDISCOUNT
-                        TOTALAMOUNTDUE = TOTALAMOUNTDUE - PRTOTALDISCOUNT
+                        TOTALDISCOUNT = NUMBERFORMAT(TOTALDISCOUNT + PRTOTALDISCOUNT)
+                        TOTALAMOUNTDUE = NUMBERFORMAT(TOTALAMOUNTDUE - PRTOTALDISCOUNT)
                         If S_ZeroRated = "1" Then
-                            ZERORATEDSALES = PRVATABLESALES
-                            ZERORATEDNETSALES = PRTOTALAMOUNTDUE
+                            ZERORATEDSALES = NUMBERFORMAT(PRVATABLESALES)
+                            ZERORATEDNETSALES = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         End If
                         .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(Val(.TextBoxGRANDTOTAL.Text) - PRTOTALDISCOUNT)
-                        PromoTotal = PRTOTALDISCOUNT
+                        PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                         PromoDesc = ""
                         PromoApplied = True
                         PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -301,28 +301,28 @@ Public Class CouponCode
                             PRVAT12PERCENT = 0
                             PRVATABLESALES = Format(PRGROSSSALES, "0.00")
                         Else
-                            PRTOTALAMOUNTDUE = PRGROSSSALES - PRTOTALDISCOUNT
+                            PRTOTALAMOUNTDUE = NUMBERFORMAT(PRGROSSSALES - PRTOTALDISCOUNT)
                             PRVATABLESALES = Format(PRGROSSSALES / PRTax, "0.00")
                             PRVAT12PERCENT = Format(PRGROSSSALES - PRVATABLESALES, "0.00")
                         End If
-                        PRTOTALDISCOUNT = Val(POS.TextBoxGRANDTOTAL.Text)
+                        PRTOTALDISCOUNT = NUMBERFORMAT(Val(POS.TextBoxGRANDTOTAL.Text))
                         PRTOTALAMOUNTDUE = 0
-                        GROSSSALE = PRGROSSSALES
-                        TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                        GROSSSALE = NUMBERFORMAT(PRGROSSSALES)
+                        TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                         VATEXEMPTSALES = 0
                         LESSVAT = 0
-                        TOTALDISCOUNT = PRTOTALDISCOUNT
-                        VATABLESALES = PRVATABLESALES
-                        VAT12PERCENT = PRVAT12PERCENT
-                        TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                        TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                        VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                        VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                        TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(0)
                         .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
                         If S_ZeroRated = "1" Then
-                            ZERORATEDSALES = PRVATABLESALES
-                            ZERORATEDNETSALES = PRTOTALAMOUNTDUE
+                            ZERORATEDSALES = NUMBERFORMAT(PRVATABLESALES)
+                            ZERORATEDNETSALES = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                         End If
                         PromoDesc = ""
-                        PromoTotal = PRTOTALDISCOUNT
+                        PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                         PromoApplied = True
                         PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
 
@@ -330,13 +330,13 @@ Public Class CouponCode
                         'Dim TotalDiscounted As Double = Double.Parse(.TextBoxDISCOUNT.Text) + PRTOTALDISCOUNT
                         Dim TotalDiscounted As Double = Double.Parse(.TextBoxSUBTOTAL.Text)
                         GROSSSALE = 0
-                        TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
-                        TOTALDISCOUNT = TotalDiscounted
+                        TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
+                        TOTALDISCOUNT = NUMBERFORMAT(TotalDiscounted)
                         TOTALAMOUNTDUE = 0
                         .TextBoxGRANDTOTAL.Text = 0
-                        .TextBoxDISCOUNT.Text = TotalDiscounted
+                        .TextBoxDISCOUNT.Text = NUMBERFORMAT(TotalDiscounted)
                         PromoDesc = ""
-                        PromoTotal = TotalDiscounted
+                        PromoTotal = NUMBERFORMAT(TotalDiscounted)
                         PromoApplied = True
                         PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
 
@@ -398,18 +398,18 @@ Public Class CouponCode
                     End If
 
                     '.GROSSSALE = GROSSSALES
-                    TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                     VATEXEMPTSALES = 0
-                    LESSVAT = PRLESSVAT
-                    TOTALDISCOUNT = PRTOTALDISCOUNT
-                    VATABLESALES = PRVATABLESALES
-                    VAT12PERCENT = PRVAT12PERCENT
-                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                    LESSVAT = NUMBERFORMAT(PRLESSVAT)
+                    TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                    VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                    VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
 
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoDesc = ""
-                    PromoTotal = PRTOTALDISCOUNT
+                    PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoApplied = True
                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")
@@ -485,31 +485,31 @@ Public Class CouponCode
                                         Dim PRTAX As Double = 1 + Val(S_ZeroRated_Tax)
                                         GetDiscount = Math.Round(POS.DataGridViewOrders.Rows(i).Cells(2).Value / PRTAX, 2, MidpointRounding.AwayFromZero)
                                         TotalZeroRatedPrice = GetDiscount * DataGridViewCoupons.SelectedRows(0).Cells(7).Value
-                                        ZERORATEDSALES = .Label76.Text
-                                        ZERORATEDNETSALES = PRTOTALAMOUNTDUE
+                                        ZERORATEDSALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
+                                        ZERORATEDNETSALES = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                                         .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(Val(.TextBoxGRANDTOTAL.Text) - TotalZeroRatedPrice)
                                         .TextBoxDISCOUNT.Text = NUMBERFORMAT(GetDiscount)
                                         PRVAT12PERCENT = 0
                                         PRVATABLESALES = 0
                                     Else
                                         Dim PRTAX As Double = 1 + Val(S_Tax)
-                                        PRVATABLESALES = PRGROSSSALES / PRTAX
+                                        PRVATABLESALES = NUMBERFORMAT(PRGROSSSALES / PRTAX)
                                         PRVAT12PERCENT = NUMBERFORMAT(PRVATABLESALES * S_Tax)
                                         .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                                         .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRDISCOUNTEDAMOUNT)
                                     End If
 
                                     '.GROSSSALE = GROSSSALES
-                                    TOTALDISCOUNTEDAMOUNT = PRDISCOUNTEDAMOUNT
+                                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRDISCOUNTEDAMOUNT)
                                     VATEXEMPTSALES = 0
                                     LESSVAT = 0
-                                    TOTALDISCOUNT = PRDISCOUNTEDAMOUNT
-                                    VATABLESALES = PRVATABLESALES
-                                    VAT12PERCENT = PRVAT12PERCENT
-                                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                                    TOTALDISCOUNT = NUMBERFORMAT(PRDISCOUNTEDAMOUNT)
+                                    VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                                    VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
 
                                     PromoDesc = ""
-                                    PromoTotal = PRDISCOUNTEDAMOUNT
+                                    PromoTotal = NUMBERFORMAT(PRDISCOUNTEDAMOUNT)
                                     PromoApplied = True
                                     BundleIDExist = True
                                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -582,20 +582,19 @@ Public Class CouponCode
                 If ReferenceExist = True Then
                     Try
                         For Each getBundleids In bundIds
-                            Console.Write(getBundleids)
                             For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
                                 If POS.DataGridViewOrders.Rows(i).Cells(5).Value.ToString.Contains(getBundleids) = True Then
                                     If POS.DataGridViewOrders.Rows(i).Cells(1).Value >= Me.DataGridViewCoupons.SelectedRows(0).Cells(9).Value Then
 
 
                                         If S_ZeroRated = "1" Then
-                                            PRVATABLESALES = .Label76.Text
-                                            ZERORATEDSALES = PRVATABLESALES
-                                            ZERORATEDNETSALES = PRTOTALAMOUNTDUE
+                                            PRVATABLESALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
+                                            ZERORATEDSALES = NUMBERFORMAT(PRVATABLESALES)
+                                            ZERORATEDNETSALES = NUMBERFORMAT(PRTOTALAMOUNTDUE)
 
                                             .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(Val(.TextBoxGRANDTOTAL.Text) - PRTOTALDISCOUNT)
                                             .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
-                                            TOTALAMOUNTDUE = .TextBoxGRANDTOTAL.Text
+                                            TOTALAMOUNTDUE = NUMBERFORMAT(Val(.TextBoxGRANDTOTAL.Text))
                                         Else
                                             .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                                             .TextBoxDISCOUNT.Text = NUMBERFORMAT(PRTOTALDISCOUNT)
@@ -604,16 +603,16 @@ Public Class CouponCode
                                             PRVAT12PERCENT = NUMBERFORMAT(PRVATABLESALES * S_Tax)
                                         End If
 
-                                        GROSSSALE = PRGROSSSALES
-                                        TOTALDISCOUNTEDAMOUNT = PRTOTALAMOUNTDUE
+                                        GROSSSALE = NUMBERFORMAT(PRGROSSSALES)
+                                        TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                                         VATEXEMPTSALES = 0
                                         LESSVAT = 0
-                                        TOTALDISCOUNT = PRTOTALDISCOUNT
-                                        VATABLESALES = PRVATABLESALES
-                                        VAT12PERCENT = PRVAT12PERCENT
+                                        TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                                        VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                                        VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
 
                                         PromoDesc = ""
-                                        PromoTotal = PRTOTALDISCOUNT
+                                        PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                                         PromoApplied = True
                                         PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                                         BundleIDExist = True
@@ -723,18 +722,18 @@ Public Class CouponCode
                                     PRVAT12PERCENT = 0
                                 End If
 
-                                GROSSSALE = PRGROSSSALES
-                                TOTALDISCOUNTEDAMOUNT = PRDISCOUNTAMOUNT
+                                GROSSSALE = NUMBERFORMAT(PRGROSSSALES)
+                                TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRDISCOUNTAMOUNT)
                                 VATEXEMPTSALES = 0
                                 LESSVAT = 0
-                                TOTALDISCOUNT = PRTOTALDISCOUNT
-                                VATABLESALES = PRVATABLESALES
-                                VAT12PERCENT = PRVAT12PERCENT
-                                TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                                TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                                VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                                VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                                TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                                 .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
 
                                 PromoDesc = ""
-                                PromoTotal = PRTOTALDISCOUNT
+                                PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                                 PromoApplied = True
                                 PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                             End If
@@ -776,18 +775,18 @@ Public Class CouponCode
                     Dim PRVATABLESALES As Double = Format(PRGROSSSALES / PRTAX, "0.00")
                     Dim PRVAT12PERCENT As Double = Format(PRVATABLESALES * S_Tax, "0.00")
 
-                    GROSSSALE = PRGROSSSALES
-                    TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                    GROSSSALE = NUMBERFORMAT(PRGROSSSALES)
+                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                     VATEXEMPTSALES = 0
                     LESSVAT = 0
-                    TOTALDISCOUNT = PRTOTALDISCOUNT
-                    VATABLESALES = PRVATABLESALES
-                    VAT12PERCENT = PRVAT12PERCENT
-                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                    TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                    VATABLESALES = NUMBERFORMAT(PRVATABLESALES)
+                    VAT12PERCENT = NUMBERFORMAT(PRVAT12PERCENT)
+                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxDISCOUNT.Text = NUMBERFORMAT(TOTALDISCOUNT)
                     PromoDesc = ""
-                    PromoTotal = PRTOTALDISCOUNT
+                    PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoApplied = True
                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")
@@ -804,23 +803,23 @@ Public Class CouponCode
                     PRTOTALDISCOUNT = PRGROSSSALES * PRTOTALDISCOUNT
                     PRTOTALAMOUNTDUE = Format(PRGROSSSALES - PRTOTALDISCOUNT, "0.00")
 
-                    GROSSSALE = PRGROSSSALES
-                    TOTALDISCOUNTEDAMOUNT = PRGROSSSALES
+                    GROSSSALE = NUMBERFORMAT(PRGROSSSALES)
+                    TOTALDISCOUNTEDAMOUNT = NUMBERFORMAT(PRGROSSSALES)
                     VATEXEMPTSALES = 0
                     LESSVAT = 0
-                    TOTALDISCOUNT = PRTOTALDISCOUNT
-                    VATABLESALES = .Label76.Text
+                    TOTALDISCOUNT = NUMBERFORMAT(PRTOTALDISCOUNT)
+                    VATABLESALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
                     VAT12PERCENT = 0
-                    TOTALAMOUNTDUE = PRTOTALAMOUNTDUE
+                    TOTALAMOUNTDUE = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(PRTOTALAMOUNTDUE)
                     .TextBoxDISCOUNT.Text = NUMBERFORMAT(TOTALDISCOUNT)
 
-                    ZERORATEDSALES = .Label76.Text
-                    ZERORATEDNETSALES = .Label76.Text - PRTOTALDISCOUNT
+                    ZERORATEDSALES = NUMBERFORMAT(Double.Parse(.Label76.Text))
+                    ZERORATEDNETSALES = NUMBERFORMAT(Double.Parse(.Label76.Text) - PRTOTALDISCOUNT)
                     .TextBoxGRANDTOTAL.Text = NUMBERFORMAT(.Label76.Text - PRTOTALDISCOUNT)
 
                     PromoDesc = ""
-                    PromoTotal = PRTOTALDISCOUNT
+                    PromoTotal = NUMBERFORMAT(PRTOTALDISCOUNT)
                     PromoApplied = True
                     PromoName = Me.DataGridViewCoupons.Item(1, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
                     MsgBox("Applied")

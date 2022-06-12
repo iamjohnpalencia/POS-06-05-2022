@@ -87,6 +87,7 @@ Public Class SettingsForm
                 NumericUpDownPrintCount.Enabled = False
                 ComboBoxPrintSize.Enabled = False
                 TextBoxS_ZeroRated.Enabled = False
+                ButtonSaveZeroRated.Enabled = False
             Else
                 GroupBox19.Enabled = True
                 AutoBackupBoolean = True
@@ -675,7 +676,7 @@ Public Class SettingsForm
                     MessageBox.Show("Reason for refund is required!", "Refund", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     sql = "SELECT * FROM loc_daily_transaction WHERE created_at >= Now() - INTERVAL 10 MINUTE AND transaction_number = '" & transaction_num & "'"
-                    Console.WriteLine(sql)
+
                     Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                     Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
                     Dim dt As DataTable = New DataTable

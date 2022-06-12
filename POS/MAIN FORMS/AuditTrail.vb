@@ -268,11 +268,13 @@ Public Class AuditTrail
 
         Try
             LoadLogs(False)
-
-
-
         Catch ex As Exception
             LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
         End Try
+    End Sub
+
+    Private Sub DataGridViewAuditTrail_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewAuditTrail.CellDoubleClick
+        Dim showFrm As ViewLogs = New ViewLogs(DataGridViewAuditTrail.SelectedRows(0).Cells(5).Value.ToString)
+        showFrm.ShowDialog()
     End Sub
 End Class

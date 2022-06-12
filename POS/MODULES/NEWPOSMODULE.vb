@@ -138,6 +138,7 @@ Module NEWPOSMODULE
             DataAdapterCriticalLimit = New MySqlDataAdapter(CmdCriticalLimit)
             DataTableCriticalLimit = New DataTable
             DataAdapterCriticalLimit.Fill(DataTableCriticalLimit)
+            Dim AutoCompute As Boolean = True
             If DataTableCriticalLimit.Rows.Count > 0 Then
                 For i As Integer = 0 To DataTableCriticalLimit.Rows.Count - 1 Step +1
                     ListOfIngredients += DataTableCriticalLimit(i)(0) & ", "
@@ -147,13 +148,14 @@ Module NEWPOSMODULE
                 If outofstock = DialogResult.Yes Then
                     AddProductToDatagridviewOrders(ProductName, ProductOriginalPrice, ID, SKU, CAT, ORIGIN, INVID, addontype, halfbatch)
                     AddInventoryToDatagridviewInv(formula_id, CAT, ORIGIN, addontype, ProductName, halfbatch)
+                Else
+                    AutoCompute = False
                 End If
             Else
                 AddProductToDatagridviewOrders(ProductName, ProductOriginalPrice, ID, SKU, CAT, ORIGIN, INVID, addontype, halfbatch)
                 AddInventoryToDatagridviewInv(formula_id, CAT, ORIGIN, addontype, ProductName, halfbatch)
             End If
-            POS.TextBoxQTY.Text = "0"
-            Compute()
+            Compute(AutoCompute:=AutoCompute)
             ConnectionLocal.Close()
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "New POS Module: " & ex.ToString, "Critical")

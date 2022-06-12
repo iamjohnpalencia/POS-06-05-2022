@@ -28,7 +28,7 @@ Public Class DepositSlip
                 GLOBAL_SYSTEM_LOGS("DEPOSIT", "Name: " & TextBoxNAME.Text & " Trn.Number: " & TextBoxTRANNUM.Text & " Amount: " & TextBoxAMT.Text)
                 AuditTrail.LogToAuditTral("User", "Deposit: Name; " & TextBoxNAME.Text & " Trn.Number; " & TextBoxTRANNUM.Text & " Amount; " & TextBoxAMT.Text & ", Created By: " & ClientCrewID, "Normal")
 
-                MsgBox("Thank you!")
+                MsgBox("Complete!")
                 ClearTextBox(Me)
             End If
         Catch ex As Exception
